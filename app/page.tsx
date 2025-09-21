@@ -7,6 +7,7 @@ import Earth from "../components/3d/Earth";
 import Starfield from "../components/3d/Starfield";
 import Hero from "../components/sections/Hero";
 import LiveDetection from "../components/sections/LiveDetection";
+import ReportIncident from "../components/sections/ReportIncident";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -66,7 +67,7 @@ export default function Home() {
       </motion.div>
 
       {/* Content Sections */}
-      <div className="relative z-40">
+      <div className="relative z-20">
         {/* Hero Section */}
         <Hero />
 
@@ -216,6 +217,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Report Incident Section */}
+        <ReportIncident />
       </div>
     </div>
   );

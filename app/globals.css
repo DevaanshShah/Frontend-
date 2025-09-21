@@ -52,3 +52,31 @@ section {
 .animate-delay-400 {
   animation-delay: 400ms;
 }
+
+/* Global animated background (subtle aurora-like lighting) */
+@keyframes auroraShift {
+  0% { transform: translate3d(0%, 0%, 0) scale(1); }
+  50% { transform: translate3d(-5%, -3%, 0) scale(1.05); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1); }
+}
+
+@keyframes slowPan {
+  0% { background-position: 0% 0%, 100% 100%; }
+  50% { background-position: 50% 30%, 50% 70%; }
+  100% { background-position: 0% 0%, 100% 100%; }
+}
+
+.animated-aurora {
+  background: radial-gradient(60% 60% at 20% 30%, rgba(16,185,129,0.18), transparent 70%),
+              radial-gradient(50% 50% at 80% 70%, rgba(59,130,246,0.18), transparent 70%),
+              radial-gradient(40% 40% at 50% 10%, rgba(99,102,241,0.12), transparent 70%);
+  filter: blur(30px);
+  animation: auroraShift 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-slow-pan {
+  animation: slowPan 24s ease-in-out infinite;
+  background-size: 200% 200%, 200% 200%;
+  will-change: background-position;
+}

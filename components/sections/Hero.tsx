@@ -26,7 +26,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="h-screen relative z-50 flex items-center justify-center px-6 md:px-8 pointer-events-none">
+    <section className="h-screen relative z-10 flex items-start justify-center px-6 md:px-8 pt-[75vh] md:pt-[70vh] pointer-events-none">
       <div className="max-w-7xl mx-auto w-full">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white text-center drop-shadow-[0_0_20px_rgba(255,255,255,0.35)]">
           <motion.span
