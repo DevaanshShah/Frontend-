@@ -18,20 +18,9 @@ export default function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50">
       <nav className="mx-auto max-w-7xl px-6 md:px-8 py-4">
         <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/30 backdrop-blur supports-[backdrop-filter]:bg-black/30 px-4 py-2">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="text-white font-extrabold tracking-tight text-xl">
-              TerraTrack
-            </Link>
-            {/* Ministry/Authority badge (placeholder) */}
-            <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              {/* Shield-like SVG to feel official without using a real logo */}
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3z" stroke="currentColor" strokeWidth="1.2" className="text-emerald-300"/>
-                <path d="M8 11l2 2 4-4" stroke="currentColor" strokeWidth="1.2" className="text-emerald-300"/>
-              </svg>
-              <span className="text-xs text-white/90 whitespace-nowrap">Ministry of Environment</span>
-            </div>
-          </div>
+          <Link href="/" className="text-white font-extrabold tracking-tight text-xl">
+            TerraTrack
+          </Link>
 
           <div className="hidden md:flex items-center gap-6">
             {links.map((l) => (
@@ -60,14 +49,6 @@ export default function Navbar() {
         {open && (
           <div className="mt-2 md:hidden rounded-xl border border-white/10 bg-black/40 backdrop-blur px-4 py-3">
             <div className="flex flex-col gap-3">
-              {/* Badge within mobile menu */}
-              <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3z" stroke="currentColor" strokeWidth="1.2" className="text-emerald-300"/>
-                  <path d="M8 11l2 2 4-4" stroke="currentColor" strokeWidth="1.2" className="text-emerald-300"/>
-                </svg>
-                <span className="text-xs text-white/90">Ministry of Environment</span>
-              </div>
               {links.map((l) => (
                 <a
                   key={l.href}

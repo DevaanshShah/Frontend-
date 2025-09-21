@@ -9,10 +9,10 @@ export default function LiveDetection() {
         "Real-time hotspot detection and perimeter change analytics from thermal and optical satellite feeds.",
     },
     {
-      icon: "📲",
-      title: "Live SMS Alert",
+      icon: "📥",
+      title: "Actionable and Downloadable Insights",
       desc:
-        "For any event in a user's area or when thresholds are crossed, authorities and users nearby are notified instantly via SMS.",
+        "One-click, auto-generated insight files (PDF/JSON/Text) summarising detections, location context, and timelines—ready to share with teams or authorities.",
     },
     {
       icon: "🌲",
@@ -62,16 +62,7 @@ export default function LiveDetection() {
                   <div className="flex-1">
                     <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-2">{c.title}</h3>
                     <p className="text-sm md:text-base text-neutral-300 mb-3">{c.desc}</p>
-                    {c.title === "Deforestation Detection" && (
-                      <p className="text-xs md:text-sm text-emerald-300 mb-3 inline-flex items-center gap-2 bg-emerald-400/10 border border-emerald-500/30 px-3 py-1 rounded-full">
-                        <span>👁️</span>
-                        Actionable visual insights
-                      </p>
-                    )}
-                    <span className="inline-flex items-center gap-2 text-emerald-300 text-xs md:text-sm font-semibold bg-emerald-400/10 border border-emerald-500/30 px-3 py-1 rounded-full">
-                      <span className="inline-block w-2 h-2 bg-emerald-400 rounded-full"></span>
-                      LIVE MONITORING ACTIVE
-                    </span>
+                    {/* Live monitoring badge removed per request */}
                   </div>
                 </div>
               </div>
