@@ -9,10 +9,10 @@ export default function LiveDetection() {
         "Real-time hotspot detection and perimeter change analytics from thermal and optical satellite feeds.",
     },
     {
-      icon: "🏙️",
-      title: "Urban Sprawling Detection",
+      icon: "📲",
+      title: "Live SMS Alert",
       desc:
-        "Automatic detection of built-up growth and land-use change with multi-temporal urban expansion analysis.",
+        "For any event in a user's area or when thresholds are crossed, authorities and users nearby are notified instantly via SMS.",
     },
     {
       icon: "🌲",
@@ -31,9 +31,9 @@ export default function LiveDetection() {
   return (
     <section className="py-24 px-6 md:px-8" id="live">
       <div className="max-w-7xl mx-auto">
-        <div className="text-left mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">Live Detection Using AI</h2>
-          <p className="text-lg md:text-xl text-muted max-w-3xl">
+          <p className="text-lg md:text-xl text-muted max-w-3xl mx-auto">
             Cutting-edge artificial intelligence algorithms continuously monitor and analyze planetary health indicators.
           </p>
         </div>
@@ -61,7 +61,13 @@ export default function LiveDetection() {
                   <div className="text-2xl md:text-3xl text-emerald-400">{c.icon}</div>
                   <div className="flex-1">
                     <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-2">{c.title}</h3>
-                    <p className="text-sm md:text-base text-neutral-300 mb-6">{c.desc}</p>
+                    <p className="text-sm md:text-base text-neutral-300 mb-3">{c.desc}</p>
+                    {c.title === "Deforestation Detection" && (
+                      <p className="text-xs md:text-sm text-emerald-300 mb-3 inline-flex items-center gap-2 bg-emerald-400/10 border border-emerald-500/30 px-3 py-1 rounded-full">
+                        <span>👁️</span>
+                        Actionable visual insights
+                      </p>
+                    )}
                     <span className="inline-flex items-center gap-2 text-emerald-300 text-xs md:text-sm font-semibold bg-emerald-400/10 border border-emerald-500/30 px-3 py-1 rounded-full">
                       <span className="inline-block w-2 h-2 bg-emerald-400 rounded-full"></span>
                       LIVE MONITORING ACTIVE

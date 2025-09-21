@@ -2,8 +2,8 @@ import "./globals.css";
 import Navbar from "../components/shared/Navbar";
 
 export const metadata = {
-  title: "Robot Bobby Earth",
-  description: "Scroll-driven 3D Earth with React Three Fiber",
+  title: "TerraTrack",
+  description: "TerraTrack — Scroll-driven 3D Earth with React Three Fiber",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

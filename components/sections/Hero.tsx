@@ -1,9 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
-  const text = "Terratrack";
+  const text = "TerraTrack";
 
   const container = {
     hidden: {},
@@ -44,6 +45,8 @@ export default function Hero() {
             ))}
           </motion.span>
         </h1>
+
+        {/* End-of-page CTA only (moved out of Hero) */}
       </div>
     </section>
   )

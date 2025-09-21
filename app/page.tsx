@@ -3,11 +3,12 @@
 import { Canvas } from "@react-three/fiber";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import Earth from "../components/3d/Earth";
 import Starfield from "../components/3d/Starfield";
 import Hero from "../components/sections/Hero";
 import LiveDetection from "../components/sections/LiveDetection";
-import ReportIncident from "../components/sections/ReportIncident";
+import Awareness from "../components/sections/Awareness";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,8 @@ export default function Home() {
 
   // Large in Hero, then shift right + shrink as Live section approaches
   // First, move a bit to the right during Live section, then glide left for About
-  const earthXLiveNum = useTransform(liveProgress, [0, 1], [50, 70]);
+  // During Live Detection, drift the globe to the LEFT (smaller %) instead of right
+  const earthXLiveNum = useTransform(liveProgress, [0, 1], [50, 12]);
   const earthXAboutNum = useTransform(aboutProgress, [0, 1], [70, 0]);
   const earthX = useTransform(
     [earthXLiveNum, earthXAboutNum, aboutProgress],
@@ -49,13 +51,17 @@ export default function Home() {
   const earthY = useTransform(liveProgress, [0, 1], [-260, 0]);
   // Separate size states for hero vs live (slightly smaller in hero to avoid clipping)
   const globeSize = useTransform(liveProgress, [0, 1], ["68vmin", "56vmin"]);
+  // Keep the globe visible through About; fade out as About begins
+  const earthOpacity = useTransform(aboutProgress, [0, 1], [1, 0]);
+  // Subtle clockwise rotation as we enter About to give a "facing down" feel
+  const earthRotate = useTransform(aboutProgress, [0, 1], [0, 12]);
 
   return (
     <div ref={containerRef} className="relative">
       {/* Fixed animated Globe */}
       <motion.div
         className="fixed top-1/2 z-30 pointer-events-none -translate-y-1/2"
-        style={{ left: earthX, x: earthXOffset, y: earthY, scale: earthScale, originX: "50%", originY: "50%", width: globeSize, height: globeSize }}
+        style={{ left: earthX, x: earthXOffset, y: earthY, scale: earthScale, rotate: earthRotate, originX: "50%", originY: "50%", width: globeSize, height: globeSize, opacity: earthOpacity }}
       >
         <Canvas camera={{ position: [0, 0, 5.2], fov: 40 }} className="w-full h-full">
           <ambientLight intensity={0.5} />
@@ -149,77 +155,29 @@ export default function Home() {
 
         {/* Life on Earth Section removed */}
 
-        {/* Protecting Our Home Section */}
-        <section id="protect" className="relative py-24 px-6 md:py-28 bg-neutral-900/60 backdrop-blur">
-          {/* Soft background glow */}
-          <div className="absolute inset-0 -z-10 pointer-events-none">
-            <div
-              className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(closest-side, rgba(16,185,129,0.35), rgba(16,185,129,0.08), transparent 70%)",
-                filter: "blur(18px)",
-              }}
-              aria-hidden
-            />
-          </div>
+        
 
+        {/* Awareness Section */}
+        <Awareness />
+
+        {/* End-of-page Submit Report CTA */}
+        <section className="relative py-16 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-                <span className="bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent">Protecting Our Home</span>
-              </h2>
-              <p className="mt-6 text-lg text-neutral-300 leading-relaxed">
-                As we explore and understand our planet, it becomes vital to preserve Earth's delicate systems for
-                future generations. Together we can restore ecosystems and build resilient communities.
+            <div className="w-full max-w-4xl mx-auto rounded-2xl border border-white/10 bg-black/30 backdrop-blur px-4 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center gap-4">
+              <p className="text-center md:text-left text-base md:text-lg text-neutral-100">
+                <span className="font-semibold">See something wrong or cruelty?</span> Help us fight the enemies of nature.
               </p>
-            </div>
-
-            {/* Feature cards */}
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-emerald-700/40 bg-neutral-900/60 p-6 backdrop-blur-sm shadow-lg">
-                <div className="flex items-start gap-3">
-                  <div className="text-2xl text-emerald-400">🌿</div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Conservation Efforts</h3>
-                    <p className="text-neutral-300 text-sm leading-relaxed">Protect biodiversity, reduce pollution, and scale renewable adoption.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-2xl border border-emerald-700/40 bg-neutral-900/60 p-6 backdrop-blur-sm shadow-lg">
-                <div className="flex items-start gap-3">
-                  <div className="text-2xl text-emerald-400">📈</div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Data-Driven Policy</h3>
-                    <p className="text-neutral-300 text-sm leading-relaxed">Transform live insights into actionable policies and rapid response.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-2xl border border-emerald-700/40 bg-neutral-900/60 p-6 backdrop-blur-sm shadow-lg">
-                <div className="flex items-start gap-3">
-                  <div className="text-2xl text-emerald-400">👨‍👩‍👧‍👦</div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Future Generations</h3>
-                    <p className="text-neutral-300 text-sm leading-relaxed">Educate, innovate, and collaborate to ensure a habitable planet.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="mt-12 flex justify-center">
-              <a
-                href="#live"
-                className="px-8 py-4 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors border border-secondary/30"
+              <Link
+                href="/report"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-secondary text-secondary-foreground font-semibold border border-secondary/30 hover:bg-secondary/90 transition-colors whitespace-nowrap"
               >
-                Explore Live Monitoring
-              </a>
+                Submit Report
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Report Incident Section */}
-        <ReportIncident />
+        {/* Report moved to its own page (see /report) */}
       </div>
     </div>
   );
